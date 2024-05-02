@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  fastapi_server_1:
+    container_name: fastapi_temporal1
+    image: fastapi_temporal:latest
+    restart: always
+    ports:
+      - "8001:8000"
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    networks:
+      - backend
+    environment:
+      APP_NAME: server1
+
+  fastapi_server_2:
+    container_name: fastapi_temporal2
+    image: fastapi_temporal:latest
+    restart: always
+    ports:
+      - "8002:8000"
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    networks:
+      - backend
+    environment:
+      APP_NAME: server2
+
+  fastapi_server_3:
+    container_name: fastapi_temporal3
+    image: fastapi_temporal:latest
+    restart: always
+    ports:
+      - "8003:8000"
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    networks:
+      - backend
+    environment:
+      APP_NAME: server3
+
+  fastapi_server_4:
+    container_name: fastapi_temporal4
+    image: fastapi_temporal:latest
+    restart: always
+    ports:
+      - "8004:8000"
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    networks:
+      - backend
+    environment:
+      APP_NAME: server4
+
+networks:
+  backend:
+    driver: bridge
