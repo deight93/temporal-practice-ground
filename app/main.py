@@ -1,7 +1,8 @@
-from core.settings import EnvSettings
 from fastapi import FastAPI, HTTPException
-from schemas.schemas import BaseResponse
-from services import services
+
+from app.core.settings import EnvSettings
+from app.schemas.schemas import BaseResponse
+from app.services import services
 
 settings = EnvSettings()
 app = FastAPI()
