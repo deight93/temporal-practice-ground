@@ -49,6 +49,30 @@ services:
     environment:
       APP_NAME: server4
 
+  fastapi_server_5:
+    container_name: fastapi_temporal5
+    image: fastapi_temporal:latest
+    restart: always
+    ports:
+      - "8005:8000"
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    networks:
+      - backend
+    environment:
+      APP_NAME: server5
+
+  fastapi_server_6:
+    container_name: fastapi_temporal6
+    image: fastapi_temporal:latest
+    restart: always
+    ports:
+      - "8006:8000"
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    networks:
+      - backend
+    environment:
+      APP_NAME: server6
+
 networks:
   backend:
     driver: bridge
