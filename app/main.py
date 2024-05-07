@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Query
 
 from app.core.settings import EnvSettings
 from app.schemas.schemas import (
@@ -17,36 +17,38 @@ match settings.APP_NAME:
     case "server1":
 
         @app.get("/", response_model=BaseResponse)
-        async def root():
-            service = services.random_delay()
+        async def root(number: int | None = Query(default=None)):
+            service = services.random_delay(number)
             return service
 
     case "server2":
 
         @app.get("/", response_model=BaseResponse)
-        async def root():
-            service = services.half_chance_failure()
+        async def root(number: int | None = Query(default=None)):
+            service = services.half_chance_failure(number)
             return service
 
     case "server3":
 
         @app.get("/", response_model=BaseResponse)
-        async def root():
-            service = services.get_four()
+        async def root(number: int | None = Query(default=None)):
+            service = services.get_four(number)
             return service
 
     case "server4":
 
         @app.get("/", response_model=BaseResponse)
-        async def root():
-            service = services.get_negative_twenty()
+        async def root(number: int | None = Query(default=None)):
+            service = services.get_negative_twenty(number)
             return service
 
     case "server5":
 
         @app.get("/", response_model=BaseResponse)
-        async def root(param: GetPlusRequest = Depends()):
-            service = services.get_response_plus(param)
+        async def root(
+            param: GetPlusRequest = Depends(), number: int | None = Query(default=None)
+        ):
+            service = services.get_response_plus(param, number)
             return service
 
     case "server6":

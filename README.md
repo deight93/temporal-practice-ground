@@ -14,7 +14,8 @@ API서버
 
 
 Workflow
-- server1 + server2 + server3 결과 temporal에 리턴 ( 5sec timeout ) // 실행 즉시
+- server1 + server2 + server3 결과 temporal에 리턴 ( 5sec timeout ) // 실행 즉시 비동기적
+- server1 -> server2 -> server3 결과 temporal에 리턴 ( 5sec timeout ) // 실행 즉시 동기적
 - server1 + server2 + server4 결과 temporal에 리턴 ( 5sec timeout ) // ETA 실행시간에서 10초뒤
 - server2 res + server 3 res -> server5 req -> response return // cron 서버시간 10초마다
 - server6 // cron 서버시간 10분마다
