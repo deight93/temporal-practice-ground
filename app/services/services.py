@@ -11,9 +11,9 @@ from app.schemas.schemas import (
 )
 
 
-def random_delay() -> BaseResponse:
-    number = 10
-
+def random_delay(number: int | None) -> BaseResponse:
+    if not number:
+        number = 10
     # Business Logic
     seconds = secrets.randbelow(5) + 3
     time.sleep(seconds)
@@ -22,8 +22,9 @@ def random_delay() -> BaseResponse:
     return response
 
 
-def half_chance_failure() -> BaseResponse:
-    number = 100
+def half_chance_failure(number: int | None) -> BaseResponse:
+    if not number:
+        number = 100
 
     # Business Logic
     if secrets.randbelow(2) == 0:
@@ -32,8 +33,9 @@ def half_chance_failure() -> BaseResponse:
     return response
 
 
-def get_four() -> BaseResponse:
-    number = 4
+def get_four(number: int | None) -> BaseResponse:
+    if not number:
+        number = 4
 
     # Business Logic
 
@@ -41,8 +43,9 @@ def get_four() -> BaseResponse:
     return response
 
 
-def get_negative_twenty() -> BaseResponse:
-    number = -20
+def get_negative_twenty(number: int | None) -> BaseResponse:
+    if not number:
+        number = -20
 
     # Business Logic
 
@@ -50,8 +53,9 @@ def get_negative_twenty() -> BaseResponse:
     return response
 
 
-def get_response_plus(param: GetPlusRequest) -> BaseResponse:
-    number = -35
+def get_response_plus(param: GetPlusRequest, number: int | None) -> BaseResponse:
+    if not number:
+        number = -35
 
     # Business Logic
     number += param.number1 + param.number2
