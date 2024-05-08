@@ -3,7 +3,7 @@ import asyncio
 from activity import send_request
 from temporalio.client import Client
 from temporalio.worker import Worker
-from workflow import AsyncScenario, SyncScenario
+from workflow import AsyncScenario, AsyncSyncScenario, SyncScenario
 
 
 async def main():
@@ -11,7 +11,7 @@ async def main():
     worker = Worker(
         client,
         task_queue="request-tasks",
-        workflows=[AsyncScenario, SyncScenario],
+        workflows=[AsyncScenario, SyncScenario, AsyncSyncScenario],
         activities=[send_request],
     )
     await worker.run()

@@ -14,6 +14,8 @@ from app.schemas.schemas import (
 def random_delay(number: int | None) -> BaseResponse:
     if not number:
         number = 10
+    else:
+        number += 10
     # Business Logic
     seconds = secrets.randbelow(5) + 3
     time.sleep(seconds)
@@ -25,7 +27,8 @@ def random_delay(number: int | None) -> BaseResponse:
 def half_chance_failure(number: int | None) -> BaseResponse:
     if not number:
         number = 100
-
+    else:
+        number += 100
     # Business Logic
     if secrets.randbelow(2) == 0:
         raise HTTPException(status_code=400, detail="Fail!")
@@ -36,7 +39,8 @@ def half_chance_failure(number: int | None) -> BaseResponse:
 def get_four(number: int | None) -> BaseResponse:
     if not number:
         number = 4
-
+    else:
+        number += 4
     # Business Logic
 
     response = {"status": "SUCCESS", "number": number}
@@ -46,7 +50,8 @@ def get_four(number: int | None) -> BaseResponse:
 def get_negative_twenty(number: int | None) -> BaseResponse:
     if not number:
         number = -20
-
+    else:
+        number += -20
     # Business Logic
 
     response = {"status": "SUCCESS", "number": number}
