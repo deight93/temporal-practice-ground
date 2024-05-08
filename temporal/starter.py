@@ -2,7 +2,7 @@ import asyncio
 from datetime import timedelta
 
 from temporalio.client import Client
-from workflow import AsyncScenario, SyncScenario
+from workflow import AsyncScenario, AsyncSyncScenario, SyncScenario
 
 
 async def run_workflow():
@@ -32,11 +32,11 @@ async def run_workflow():
     # Scenario4 20초마다 비동기 실행
     urls = [f"http://localhost:{port}" for port in [8002, 8003, 8005]]
     scenario4_future = client.start_workflow(
-        AsyncScenario.run,
+        AsyncSyncScenario.run,
         urls,
         id="request-workflow-4",
         task_queue="request-tasks",
-        cron_schedule="30 * * * *",
+        cron_schedule="* * * * *",
     )
 
     # 워크플로우 실행 결과 얻기
